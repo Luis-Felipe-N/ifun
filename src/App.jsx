@@ -8,7 +8,6 @@ import { Perfil } from './page/Pefil';
 
 import { AuthContextProvider } from './context/AuthContext'
 import { MemeConetextProvider } from './context/MemeContext';
-import { Header } from './component/Header';
 
 function App() {
     return (

@@ -10,8 +10,6 @@ import naoEncontrado from '../assets/image/memenaoencontrado.png'
 import '../style/page/home.scss'
 
 
-
-
 export function Home() {
     const {memes} = useMeme()
     const [ currentMemes, setCurrentMemes ] = useState()

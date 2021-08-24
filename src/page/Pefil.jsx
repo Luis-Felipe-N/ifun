@@ -7,7 +7,6 @@ import { useMeme } from "../hooks/useMeme"
 
 import '../style/page/perfil.scss'
 
-// import { FaEdit } from "react-icons/fa";
 
 export function Perfil() {
     
