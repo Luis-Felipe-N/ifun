@@ -1,0 +1,81 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.animeTop {
+    animation: animeTop .4s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1080px) {
+    html {
+        font-size: 93.75%;
+    }
+}
+
+@media (max-width: 720px) {
+    html {
+        font-size: 87.5%;
+    }
+}
+
+
+:root {
+    --primary: #FAC463;
+    --secondary: #805AD5;
+    --secondary-300: #B794F4;
+
+    --color-200:#494949;
+
+    --background: #ffffff;
+    --background-200: #f8f8f8;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--color-200);
+}
+
+body, textarea, input, button {
+    font: 400 1rem 'Poppins', monospace;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba($color: var(--secondary), $alpha: .8);
+}
+::-webkit-scrollbar-track {
+    background: rgba($color: var(--secondary), $alpha: .8);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  } 
+
+
+.erro {
+    color: $color-error;
+    font-size: 14px;
+}

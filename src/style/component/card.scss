@@ -1,0 +1,129 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.meme {
+    max-width: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: $box-shadow;
+    border: 2px solid var(--primary);
+    background-color: var(--background);
+
+
+    &__img {
+        width: 100%;
+        object-fit: cover
+    }
+
+    .meme__footer {
+        padding: .7rem;
+    }
+
+    &__interaction {
+
+        &-top {
+            @include center-al-c;
+            justify-content: space-between;
+
+            article {
+                width: 100%;
+                @include center-al-c;
+                gap: .7rem;
+    
+                img {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 100%;
+                }
+            }
+    
+            div {
+                display: flex;
+                gap: 1rem;
+    
+                button {
+                    color: var(--color-200);
+                    display: flex;
+                    align-items: flex-end;
+                    gap: .3rem;
+                    cursor: pointer;
+                    background-color: transparent;
+                    border: 0;
+                    height: 24px;
+                    font-size: 24px;
+
+                    span {
+                        font-size: 18px;
+                        height: 22px;
+                    }
+                }
+
+                .btn-like {
+                    &.isLiked {
+                        color: var(--primary);
+                    }
+                }
+            }
+        }
+
+        &-bottom {
+            display: flex;
+            margin-top: 1rem;
+
+            input {
+                flex: 4;
+                height: 40px;
+                border: 1px solid $color-gray-ligth;
+                border-radius: 8px 0 0 8px;
+                padding: 0 1rem;
+            }
+            button {
+                flex: 1;
+                @include btn-primary;
+                
+                border-radius:  0 8px 8px 0;
+            }
+        }
+    }
+
+    .container-comments {
+        margin: .7rem;
+
+        .btn-view-comment {
+            @include btn-primary;
+        }
+
+        .comment {
+            margin-top: .5rem;
+            border-bottom: 1px solid var(--background-200);
+
+            article {
+                width: 100%;
+                @include center-al-c;
+                gap: .7rem;
+                font-size: 14px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 100%;
+                }
+
+            }
+
+            
+            &:not(:last-child) {
+                margin-bottom: .3rem;
+            }
+            &__author {
+                font-size: 14px;
+            }
+            .meme-content {
+                margin-left: 35px;
+                font-size: 15px;
+                font-weight: 700;
+                color: var(--secondary)
+            }
+        }
+    }
+}

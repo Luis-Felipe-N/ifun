@@ -1,0 +1,12 @@
+@import '../utils/variables.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, input, button, textarea {
+    font: 400 16px 'Poppins', sans-serif;
+}
+

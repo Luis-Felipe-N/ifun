@@ -1,0 +1,29 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.button {
+    cursor: pointer;
+    background-color: var(--primary);
+    color: $color-secondary;
+    height: 50px;
+    padding: 0 32px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 500;
+
+    transition: filter, .2s;
+
+    @include center;
+    gap: 1rem;
+
+    &:not(:disabled):hover {
+        filter: brightness(0.9);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        color: grey;
+    }
+
+}

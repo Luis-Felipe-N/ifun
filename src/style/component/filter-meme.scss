@@ -1,0 +1,55 @@
+@import '../utils/mixins.scss';
+@import '../utils/variables.scss';
+
+.filtro-meme {
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba($color: #ffffff, $alpha: .1);
+    border: 1px solid rgba($color: #ffffff, $alpha: .2);
+    background-color: var(--background-200);
+    color: var(--color-200);
+    padding: .9rem 1rem;
+    font-weight: 700;
+    border-radius: .2rem;
+    position: relative;
+
+    .container__meme-name {
+        position: absolute;
+        left: 0;
+        bottom: 60px;
+        background-color: var(--background-200);
+        color: var(--color-200);
+        width: 100%;
+        border-radius: 4px;
+        z-index: 2;
+        display: none;
+
+        &.show {
+            display: block;
+        }
+
+        .memes-names {
+            border-radius: .3rem;
+            list-style: none;
+            height: 200px;
+            overflow: auto;
+            padding: .5rem 0;
+
+            li {
+                padding: .4rem 1rem;
+
+                &:hover {
+                    background-color: var(--background);
+                }
+            }
+        }
+    }
+
+    .header-filtro {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        justify-content: space-between;
+    }
+}
+
+// @media ( max-width: )

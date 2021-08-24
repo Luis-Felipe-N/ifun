@@ -1,0 +1,63 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+
+.home {
+
+    &__main {
+        min-height: calc(100vh - 90px);
+        display: flex;
+        justify-content: center;
+
+        padding: 2rem 5%;
+        gap: 3rem;
+        
+        > section {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        aside {
+            position: sticky;
+            top: 5%;
+            height: 100%;
+            ul {
+                margin-top: 1rem;
+                list-style: none;
+                display: flex;
+                flex-wrap: wrap;
+                gap: .7rem;
+                width: 300px;
+
+                li {
+                    button {
+                        @include btn-primary;
+
+                        &:hover {
+                            background-color: $color-dark-white;
+                            box-shadow: 0 0 0 2px var(--primary) ;
+                        }
+                    }
+                }
+            }
+        }
+
+        .meme_notfound {
+            text-align: center;
+            img {
+                max-width: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width:800px) {
+    .home {
+        &__main {
+            aside {
+                display: none;
+            }
+        }
+    }
+}

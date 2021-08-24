@@ -1,0 +1,61 @@
+@import '../utils/mixins.scss';
+@import '../utils/variables.scss';
+
+.perfil {
+    background-color: $color-dark-white;
+    
+    &__info {
+        margin: 32px 0 40px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-bottom: 1px solid var(--secondary-300);
+        padding-bottom: 1rem;
+        
+        // .container__img-perfil {
+        //     position: relative;
+
+        //     button {
+        //         border-radius: 100%;
+        //         width: 30px;
+        //         height: 30px;
+        //         background-color: var(--secondary);
+        //         position: absolute;
+        //         color: $color-dark-white;
+        //         top: 0;
+        //         right: 0;
+        //         @include center;
+        //         border: 0;
+        //         cursor: pointer;
+        //     }
+        // }
+        &-img {
+            width: 100px;
+            border-radius: 100%;
+        }
+
+        &-conquest {
+            display: flex;
+            gap: 1rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+    }
+
+    &__memes {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 3rem;
+        width: 100%;
+        margin-bottom: 32px;
+
+
+        .meme {
+            max-width: 350px !important;
+        }
+    }
+}
