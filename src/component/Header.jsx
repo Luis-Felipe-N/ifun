@@ -16,7 +16,6 @@ export function Header( props ) {
     const { clickOutSide } = useClickOutSide()
     const { user, setUser } = useAuth()
     const [ memeOpen, setMemuOpen ] = useState(false)
-    const [ logged, setLogged ] = useState(false)
 
 
     useEffect(() => {

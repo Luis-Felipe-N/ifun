@@ -2,7 +2,6 @@ import { createContext, useEffect, useState } from 'react'
 import { auth, firebase, db_firestore } from '../services/firebase'
 
 import avatarImg from '../assets/image/avatar.svg'
-import { toast } from 'react-toastify'
 
 export const AuthContext = createContext({})
 

@@ -31,10 +31,6 @@ export function MemeConetextProvider( props ) {
         getMeme()
     }, [])
 
-    function filterMemeByCategories(category) {
-        
-    }
-
     return (
         <MemeContext.Provider value={{memes}}>
             { props.children}

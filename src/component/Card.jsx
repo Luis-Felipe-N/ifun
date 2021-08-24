@@ -89,7 +89,7 @@ export function Card( props ) {
         }
 
         getLikes()
-    },[])
+    },[meme.id])
 
 
     useEffect(() => {
