@@ -4,7 +4,6 @@ import { useAuth } from "../hooks/useAuth";
 
 import { db } from '../services/firebase'
 
-import axios from 'axios'
 
 import { Button } from "../component/Button";
 import { FilterMeme } from "../component/FilterMeme";

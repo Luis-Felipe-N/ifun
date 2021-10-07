@@ -9,3 +9,23 @@
 
   <img src="https://img.shields.io/github/stars/Luis-Felipe-N/ifun?label=stars&message=MIT&color=FAC463&labelColor=121214" alt="Stars">
 </p>
+
+
+## 🚀 Getting started
+
+Clone the project and access the folder.
+
+```bash
+$ git clone https://github.com/guilhermecapitao/letmeask.git
+$ cd letmeask
+```
+
+Follow the steps below:
+```bash
+# Install the dependencies
+$ yarn
+
+# Start the project
+$ yarn start
+```
+The app will be available for access on your browser at http://localhost:3000

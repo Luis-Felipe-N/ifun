@@ -36,7 +36,7 @@ export function Card( props ) {
         if (cardHeaderModalIsOpen) {
             clickOutSide(cardHeaderModalRef.current, cardHeaderModalIsOpen, setCardHeaderModalIsOpen)
         }
-    }, [cardHeaderModalIsOpen])
+    }, [cardHeaderModalIsOpen, clickOutSide])
 
     async function handleSendCommet( id, e ) {
         e.preventDefault()
