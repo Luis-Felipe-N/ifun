@@ -217,7 +217,7 @@ export function Card( props ) {
                                     <span> {comment.author.name} </span>
                                 </article>
                                 { user.uid === comment.author.uid && <button onClick={() => deleteComment(comment.key)}>
-                                    <TiDeleteOutline color="" />
+                                    <TiDeleteOutline color="#e4717a" />
                                 </button>}
                             </div>
                             <span className="meme-content">{comment.content}</span>

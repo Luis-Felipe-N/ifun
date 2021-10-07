@@ -34,14 +34,15 @@ export function Home() {
             <main className="home__main">
                 <section className="container__memes">
                     {
-                        currentMemes?.length ? (
-                            currentMemes.map( meme => 
-                            (<article key={meme.id}>
-                                <Card meme={meme} />
-                            </article>)
-                            )
+                        currentMemes ? (
+                           currentMemes.length ? (
+                               currentMemes.map( meme => 
+                                (<article key={meme.id}>
+                                    <Card meme={meme} />
+                                </article>))
+                        ) : <h1>Sem memes...</h1>
                         ) : (
-                            <h1 className="container__meme-carregando">...Carregando</h1>
+                            <h1>...Carregando</h1>
                         )
                     }
 

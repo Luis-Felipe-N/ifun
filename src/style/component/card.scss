@@ -118,6 +118,8 @@
     }
 
     .container-comments {
+        max-height: 10rem;
+        overflow-y: auto;
         margin: .7rem;
 
         .btn-view-comment {
