@@ -54,7 +54,7 @@ export function Header( props ) {
                 </div>
             </nav>
 
-            <button className="btn-memu" onClick={ () => {setMemuOpen(true)} }>Memu</button>
+            <Button className="btn-memu" onClick={ () => {setMemuOpen(true)} }>Memu</Button>
             
         </header>
     )

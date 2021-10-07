@@ -12,10 +12,16 @@
         padding: 2rem 5%;
         gap: 3rem;
         
-        > section {
+        .container__memes {
             display: flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
             gap: 3rem;
+        
+            &_carregando {
+                flex: 1;
+            }
         }
 
         aside {

@@ -1,6 +1,23 @@
 @import '../utils/variables.scss';
 @import '../utils/mixins.scss';
 
+@mixin btnOptionsCard {
+    color: var(--color-200);
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: 0;
+    height: 24px;
+    font-size: 24px;
+    transition: .2s;
+
+    &:hover {
+        filter: brightness(.3);
+    }
+}
+
 .meme {
     max-width: 500px;
     border-radius: 8px;
@@ -9,6 +26,43 @@
     border: 2px solid var(--primary);
     background-color: var(--background);
 
+    &__header{
+        position: relative;
+        padding: 1rem;
+        @include center-al-c;
+        justify-content: space-between;
+        span {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        button {
+            @include btnOptionsCard;
+        }
+
+        &_modal {
+            display: none;
+        }
+
+        &_modal.active {
+            animation: animaup .2s;
+            display: inline-block;
+            position: absolute;
+            background-color: #fff;
+            right: 0;
+            top: 3rem;
+            box-shadow: $box-shadow;
+            font-size: 1.2rem;
+            border-radius: .5rem;
+            
+            a {
+                display: block;
+                padding: 0.7rem 1.5rem;
+                color: var(--color-200);
+                text-decoration: none;
+            }
+        }
+    }
 
     &__img {
         width: 100%;
@@ -19,70 +73,47 @@
         padding: .7rem;
     }
 
-    &__interaction {
-
-        &-top {
-            @include center-al-c;
-            justify-content: space-between;
-
-            article {
-                width: 100%;
-                @include center-al-c;
-                gap: .7rem;
+    &__btn {
     
-                img {
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 100%;
-                }
+        display: flex;
+        justify-content:space-between;
+        gap: 1rem;
+
+        button {
+            @include btnOptionsCard;
+
+            span {
+                font-size: 18px;
+                height: 22px;
             }
-    
-            div {
-                display: flex;
-                gap: 1rem;
-    
-                button {
-                    color: var(--color-200);
-                    display: flex;
-                    align-items: flex-end;
-                    gap: .3rem;
-                    cursor: pointer;
-                    background-color: transparent;
-                    border: 0;
-                    height: 24px;
-                    font-size: 24px;
 
-                    span {
-                        font-size: 18px;
-                        height: 22px;
-                    }
-                }
 
-                .btn-like {
-                    &.isLiked {
-                        color: var(--primary);
-                    }
-                }
+            
+            &:disabled{
+                cursor: not-allowed;
+            }
+            &.isLiked {
+                color: var(--primary);
             }
         }
+    }
 
-        &-bottom {
-            display: flex;
-            margin-top: 1rem;
+    &__input {
+        display: flex;
+        margin-top: 1rem;
 
-            input {
-                flex: 4;
-                height: 40px;
-                border: 1px solid $color-gray-ligth;
-                border-radius: 8px 0 0 8px;
-                padding: 0 1rem;
-            }
-            button {
-                flex: 1;
-                @include btn-primary;
-                
-                border-radius:  0 8px 8px 0;
-            }
+        input {
+            flex: 4;
+            height: 40px;
+            border: 1px solid $color-gray-ligth;
+            border-radius: 8px 0 0 8px;
+            padding: 0 1rem;
+        }
+        button {
+            flex: 1;
+            @include btn-primary;
+            
+            border-radius:  0 8px 8px 0;
         }
     }
 
@@ -97,18 +128,28 @@
             margin-top: .5rem;
             border-bottom: 1px solid var(--background-200);
 
-            article {
-                width: 100%;
-                @include center-al-c;
-                gap: .7rem;
-                font-size: 14px;
+            &__user {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
 
-                img {
-                    width: 30px;
-                    height: 30px;
-                    border-radius: 100%;
+                article {
+                    width: 100%;
+                    @include center-al-c;
+                    gap: .7rem;
+                    font-size: 14px;
+    
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        border-radius: 100%;
+                    }
+    
                 }
 
+                button {
+                    @include btnOptionsCard;
+                }
             }
 
             
@@ -125,5 +166,13 @@
                 color: var(--secondary)
             }
         }
+    }
+}
+
+@keyframes animaup {
+    from {
+        top: 1rem;
+    } to {
+        top: 3rem;
     }
 }

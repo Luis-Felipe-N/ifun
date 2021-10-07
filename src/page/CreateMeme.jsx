@@ -4,6 +4,8 @@ import { useAuth } from "../hooks/useAuth";
 
 import { db } from '../services/firebase'
 
+import axios from 'axios'
+
 import { Button } from "../component/Button";
 import { FilterMeme } from "../component/FilterMeme";
 import { Header } from "../component/Header";
@@ -14,6 +16,7 @@ import '../style/component/create-meme.scss'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 export function CreateMeme() {
     const { user } = useAuth()
@@ -99,9 +102,18 @@ export function CreateMeme() {
 
 
     const handleDownloadMeme = async () => {
+        // const {url} = template
+
+        // axios({
+        //     url,
+        //     responseType: 'stream'
+        // })
+
         const a = document.createElement('a')
-        a.download = 'meme.jpg'
-        a.href = template.url
+        a.setAttribute('href', template.url.replace('https://', ''))
+        a.setAttribute('download', '')
+        a.setAttribute('target', '_blank')
+        console.log(a)
         a.click()
     }
 
@@ -147,6 +159,7 @@ export function CreateMeme() {
 
     return (
         <>
+
             <Header isCreateMeme={false} />
             <main className="create-meme">
                 <h1>Crie seu propio meme!</h1>

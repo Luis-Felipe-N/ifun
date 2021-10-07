@@ -4,29 +4,50 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from "../hooks/useAuth";
+import { useClickOutSide } from "../hooks/useClickOutSide";
 import { db } from "../services/firebase";
 
 import '../style/component/card.scss'
 
 import { FiThumbsUp } from "react-icons/fi";
+import { AiOutlineMessage } from 'react-icons/ai'
+import { BiDotsVerticalRounded } from 'react-icons/bi'
+import { TiDeleteOutline } from 'react-icons/ti'
 
 import avatarImg from '../assets/image/avatar.svg'
 
 export function Card( props ) {
     const { user } = useAuth()
-    const meme = props.meme
+    const { clickOutSide } = useClickOutSide()
+    const { meme } = props
+
     const inputComment = useRef()
+    const cardHeaderModalRef = useRef()
+
     const [ newComment, setNewComment ] = useState()
     const [ comments, setComments ] = useState([])
     const [ likesCount, setLikesCount ] = useState()
     const [ likeId, setLikeId ] = useState(false)
     const [ openModalComments, setOpenModalComments ] = useState(false)
+    const [ cardHeaderModalIsOpen, setCardHeaderModalIsOpen ] = useState(false)
+
+
+    useEffect(() => {
+        if (cardHeaderModalIsOpen) {
+            clickOutSide(cardHeaderModalRef.current, cardHeaderModalIsOpen, setCardHeaderModalIsOpen)
+        }
+    }, [cardHeaderModalIsOpen])
 
     async function handleSendCommet( id, e ) {
         e.preventDefault()
 
         if ( !user.uid ) {
             toast.warn("Somente usuário logado!")
+            return
+        }
+
+        if( !newComment || !newComment.trim() ) {
+            return
         }
 
         const comment = {
@@ -126,17 +147,39 @@ export function Card( props ) {
         setOpenModalComments(!openModalComments)
     }
 
+    const handleViewHeaderModal = () => {
+        setCardHeaderModalIsOpen(!cardHeaderModalIsOpen)
+    }
+    
+    const deleteComment = async (keyComment) => {
+        console.log(keyComment)
+        try {
+            await db.ref(`memes/${meme.id}/comments/${keyComment}`).remove()
+        } catch (error) {
+            
+        }
+    }
 
     return (
         <div className="meme">
+            <div className="meme__header">
+                { meme && <span>{meme.author.name}</span>}
+                <button onClick={handleViewHeaderModal}><BiDotsVerticalRounded /></button>
+                <div ref={cardHeaderModalRef} className={`meme__header_modal ${cardHeaderModalIsOpen && 'active'}`}>
+                    <a href={meme.url} download>Baixar meme</a>
+                </div>
+            </div>
             <img className="meme__img" src={meme.url} alt="Meme"/>
             <section className="meme__footer">
-                <section className="meme__interaction-top">
-                    <article>
-                        <img src={ meme.author.avatar } alt="imagem usuário"/>
-                        <span> {meme.author.name} </span>
-                    </article>
-                    <div>
+                <section className="meme__btn">
+                        { comments && 
+                            <button 
+                                className="btn-view-comment" 
+                                onClick={ handleViewComments }
+                            >
+                                { openModalComments ? <AiOutlineMessage color="#FAC463" /> :  <><AiOutlineMessage />  <span>{comments.length}</span></>  }
+                            </button>
+                        }
                         <button 
                             disabled={!user.uid} 
                             onClick={ handleLikeMeme } 
@@ -145,12 +188,11 @@ export function Card( props ) {
                             { likesCount && <span>{likesCount.length}</span>}
                             <FiThumbsUp />
                         </button>
-                    </div>
-                </section>
 
+                </section>
                 { user.uid && (
                      <form 
-                        className="meme__interaction-bottom" 
+                        className="meme__input" 
                         onSubmit={ (e) => {handleSendCommet(meme.id, e)}}
                      >
                      <input 
@@ -166,27 +208,18 @@ export function Card( props ) {
             </section>
 
             <section className="container-comments">
-                    { comments.length ? 
-                        <button 
-                            className="btn-view-comment" 
-                            onClick={ handleViewComments }
-                        >
-                            { openModalComments ? ' Ver mais comentários' : `Ver os ${comments.length} comentários` }
-                        </button>
-                    : <button 
-                            onClick={ () => {console.log(inputComment.current.focus())} } 
-                            className="btn-view-comment">
-                            Seja o primeiro a comentar
-                      </button>
-                    }
-
                     {
                         comments && openModalComments && comments.map( comment => (
                         <div className="comment" key={comment.key}>
-                            <article>
-                                <img src={ comment.author.avatar || avatarImg } alt="i"/>
-                                <span> {comment.author.name} </span>
-                            </article>
+                            <div className="comment__user">
+                                <article>
+                                    <img src={ comment.author.avatar || avatarImg } alt="imagem do avatar"/>
+                                    <span> {comment.author.name} </span>
+                                </article>
+                                { user.uid === comment.author.uid && <button onClick={() => deleteComment(comment.key)}>
+                                    <TiDeleteOutline color="" />
+                                </button>}
+                            </div>
                             <span className="meme-content">{comment.content}</span>
                         </div>))
                     }

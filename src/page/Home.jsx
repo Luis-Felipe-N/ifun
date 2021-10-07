@@ -5,8 +5,6 @@ import { useMeme } from '../hooks/useMeme'
 import { Card } from '../component/Card'
 import { Header } from '../component/Header'
 
-import naoEncontrado from '../assets/image/memenaoencontrado.png'
-
 import '../style/page/home.scss'
 
 
@@ -43,10 +41,7 @@ export function Home() {
                             </article>)
                             )
                         ) : (
-                            <div className="meme_notfound">
-                                <h2>Memes não encontrados</h2>
-                                <img src={naoEncontrado} alt="Memes não encontrados"/>
-                            </div>
+                            <h1 className="container__meme-carregando">...Carregando</h1>
                         )
                     }
 
