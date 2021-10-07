@@ -14,7 +14,7 @@
     transition: .2s;
 
     &:hover {
-        filter: brightness(.3);
+        filter: brightness(.9);
     }
 }
 
@@ -28,20 +28,24 @@
 
     &__header{
         position: relative;
-        padding: 1rem;
+        padding: .5rem 1rem;
         @include center-al-c;
         justify-content: space-between;
         span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
         }
 
-        button {
+        &_btnopenmodal {
             @include btnOptionsCard;
         }
 
         &_modal {
             display: none;
+
+            &-btndelete {
+                color: #ff063eb8 !important;
+            }
         }
 
         &_modal.active {
@@ -49,18 +53,38 @@
             display: inline-block;
             position: absolute;
             background-color: #fff;
-            right: 0;
+            right: 5px;
             top: 3rem;
             box-shadow: $box-shadow;
-            font-size: 1.2rem;
+            font-size: 1rem;
             border-radius: .5rem;
+            overflow: hidden;
             
-            a {
+            a, button {
+                background-color: #fff;
                 display: block;
+                width: 100%;
                 padding: 0.7rem 1.5rem;
                 color: var(--color-200);
                 text-decoration: none;
+                transition: .2s;
+                cursor: pointer;
+
+                &:hover {
+                    filter: brightness(.9);
+                }
             }
+
+            button {
+                @include center-al-c;
+                gap: 1rem;
+                border: 0;
+            }
+        }
+
+        img {
+            width: 30px;
+            height: 30px;
         }
     }
 

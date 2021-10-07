@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 
 import { useMeme } from '../hooks/useMeme'
 
-import { Card } from '../component/Card'
 import { Header } from '../component/Header'
 
 import '../style/page/home.scss'
+// import infiniteScroll from '../component/InfiniteScroll'
+import InfiniteScroll from '../component/InfiniteScroll'
 
 
 export function Home() {
@@ -36,10 +37,7 @@ export function Home() {
                     {
                         currentMemes ? (
                            currentMemes.length ? (
-                               currentMemes.map( meme => 
-                                (<article key={meme.id}>
-                                    <Card meme={meme} />
-                                </article>))
+                               <InfiniteScroll memes={currentMemes} />
                         ) : <h1>Sem memes...</h1>
                         ) : (
                             <h1>...Carregando</h1>

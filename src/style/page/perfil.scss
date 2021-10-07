@@ -2,6 +2,7 @@
 @import '../utils/variables.scss';
 
 .perfil {
+    min-height: calc(100vh - 8rem);
     background-color: $color-dark-white;
     
     &__info {
@@ -13,24 +14,7 @@
         flex-direction: column;
         border-bottom: 1px solid var(--secondary-300);
         padding-bottom: 1rem;
-        
-        // .container__img-perfil {
-        //     position: relative;
 
-        //     button {
-        //         border-radius: 100%;
-        //         width: 30px;
-        //         height: 30px;
-        //         background-color: var(--secondary);
-        //         position: absolute;
-        //         color: $color-dark-white;
-        //         top: 0;
-        //         right: 0;
-        //         @include center;
-        //         border: 0;
-        //         cursor: pointer;
-        //     }
-        // }
         &-img {
             width: 100px;
             border-radius: 100%;

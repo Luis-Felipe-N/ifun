@@ -8,6 +8,7 @@ import { Perfil } from './page/Pefil';
 
 import { AuthContextProvider } from './context/AuthContext'
 import { MemeConetextProvider } from './context/MemeContext';
+import Footer from './component/Footer';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/singup" exact component={ SingUp } />
                         <Route path="/create/meme" component={ CreateMeme } />
                         <Route path="/user/:id" component={ Perfil }/>
+                        <Footer />
                     </MemeConetextProvider>
                 </AuthContextProvider>
             </Switch>

@@ -7,6 +7,8 @@ import { useAuth } from "../hooks/useAuth";
 import { useClickOutSide } from "../hooks/useClickOutSide";
 import { db } from "../services/firebase";
 
+import { downloaderImage } from '../utils/saveImage'
+
 import '../style/component/card.scss'
 
 import { FiThumbsUp } from "react-icons/fi";
@@ -15,6 +17,7 @@ import { BiDotsVerticalRounded } from 'react-icons/bi'
 import { TiDeleteOutline } from 'react-icons/ti'
 
 import avatarImg from '../assets/image/avatar.svg'
+import { User } from "./User";
 
 export function Card( props ) {
     const { user } = useAuth()
@@ -30,6 +33,8 @@ export function Card( props ) {
     const [ likeId, setLikeId ] = useState(false)
     const [ openModalComments, setOpenModalComments ] = useState(false)
     const [ cardHeaderModalIsOpen, setCardHeaderModalIsOpen ] = useState(false)
+
+    // const { downloaderImage } = saveImage
 
 
     useEffect(() => {
@@ -151,22 +156,47 @@ export function Card( props ) {
         setCardHeaderModalIsOpen(!cardHeaderModalIsOpen)
     }
     
-    const deleteComment = async (keyComment) => {
+    const handleDeleteComment = async (keyComment) => {
         console.log(keyComment)
         try {
             await db.ref(`memes/${meme.id}/comments/${keyComment}`).remove()
+            
+
         } catch (error) {
             
         }
     }
 
+    const handleDeleteMeme = async memeId => {
+        try {
+            await db.ref(`memes/${memeId}`).remove()
+            toast.success("Meme excluido!.")
+        } catch (error) {
+            console.log(error)
+            toast.warn("Não foi possível deletar o meme.")
+        }
+    }
+
+    const formatName = name => {
+        if (name.length > 15) {
+            return name.split(' ').splice(0, 2).splice(' ').join(' ')
+        } 
+        return name
+    }
+
+    const handleDownloadMeme = (imageSrc) => {
+        console.log(imageSrc)
+        downloaderImage(imageSrc)
+    }
+
     return (
         <div className="meme">
             <div className="meme__header">
-                { meme && <span>{meme.author.name}</span>}
-                <button onClick={handleViewHeaderModal}><BiDotsVerticalRounded /></button>
+                { meme && <User user={meme.author} />}
+                <button className="meme__header_btnopenmodal" onClick={handleViewHeaderModal}><BiDotsVerticalRounded /></button>
                 <div ref={cardHeaderModalRef} className={`meme__header_modal ${cardHeaderModalIsOpen && 'active'}`}>
-                    <a href={meme.url} download>Baixar meme</a>
+                    <button onClick={() => handleDownloadMeme(meme.url)} >Baixar meme</button>
+                    {  user.uid === meme.author.uid && <button onClick={() => handleDeleteMeme(meme.id)} className="meme__header_modal-btndelete">Deletar</button>}
                 </div>
             </div>
             <img className="meme__img" src={meme.url} alt="Meme"/>
@@ -214,9 +244,9 @@ export function Card( props ) {
                             <div className="comment__user">
                                 <article>
                                     <img src={ comment.author.avatar || avatarImg } alt="imagem do avatar"/>
-                                    <span> {comment.author.name} </span>
+                                    <span> {formatName(comment.author.name)} </span>
                                 </article>
-                                { user.uid === comment.author.uid && <button onClick={() => deleteComment(comment.key)}>
+                                { user.uid === comment.author.uid && <button onClick={() => handleDeleteComment(comment.key)}>
                                     <TiDeleteOutline color="#e4717a" />
                                 </button>}
                             </div>

@@ -33,6 +33,7 @@ export function Header( props ) {
 
     const handleLogOut = () => {
         setUser('')
+        
         history.push('/')
     }
 
@@ -47,7 +48,7 @@ export function Header( props ) {
                 <div className="nav-btns">
                     
                     { user.uid ? (
-                        isPerfil ? <Button onClick={ handleLogOut }>Sair</Button> : <User />
+                        isPerfil ? <Button onClick={ handleLogOut }>Sair</Button> : <User user={user} />
                     ) : <Button  onClick={ handleLogin }>Login</Button> }
                     
                     <Button onClick={() => {history.push('/create/meme')}}> Criar Meme </Button>

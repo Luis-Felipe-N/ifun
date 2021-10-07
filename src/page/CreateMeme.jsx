@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
 import { db } from '../services/firebase'
+import { downloaderImage } from '../utils/saveImage'
 
 
 import { Button } from "../component/Button";
@@ -27,6 +28,7 @@ export function CreateMeme() {
     const [ formInvalid, setFormInvalid ] = useState(false)
     const [ hashtag, setHashtag ] = useState()
 
+    // const { downloaderImage } = saveImage
 
     useEffect(() => {
         async function getMemes() {
@@ -55,8 +57,8 @@ export function CreateMeme() {
 
         const formData = new FormData()
         formData.append('template_id', template.id)
-        formData.append('username', 'LuisFelipeTv')
-        formData.append('password', 'Lu15#17#')
+        formData.append('username', process.env.REACT_APP_USERNAME_API)
+        formData.append('password', process.env.REACT_APP_PASSWORD_API)
         captions.forEach( ( text, index ) => formData.append(`boxes[${index}][text]`, text))
 
 
@@ -100,20 +102,8 @@ export function CreateMeme() {
     }
 
 
-    const handleDownloadMeme = async () => {
-        // const {url} = template
-
-        // axios({
-        //     url,
-        //     responseType: 'stream'
-        // })
-
-        const a = document.createElement('a')
-        a.setAttribute('href', template.url.replace('https://', ''))
-        a.setAttribute('download', '')
-        a.setAttribute('target', '_blank')
-        console.log(a)
-        a.click()
+    const handleDownloadMeme = async (imageSrc) => {
+        downloaderImage(imageSrc)
     }
 
 
@@ -179,7 +169,7 @@ export function CreateMeme() {
                        sucessCreateMeme ? (
                            <div className="container__preview">
                                 <div className="container__preview-btns">
-                                    <Button onClick={ handleDownloadMeme }>Downloader</Button>                                   
+                                    <Button onClick={ () => handleDownloadMeme(template?.url) }>Download</Button>                                   
                                     <Button onClick={() => {
                                         setSucessCreateMeme(false)
                                         setTemplate(null)
