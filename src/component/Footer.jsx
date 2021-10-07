@@ -1,5 +1,5 @@
 import '../style/component/footer.scss'
-import {  } from 'react-icons/fa'
+import { FaGithubAlt, FaLinkedin } from 'react-icons/fa'
 
 export default function Footer() {
     return (
@@ -8,7 +8,12 @@ export default function Footer() {
             <div className="links">
                 <ul>
                     <li>
-                        <a href="https://www.linkedin.com/in/luis-felipe-nunes-de-carvalho-02055b207/"></a><a href=""></a>
+                        <a href="https://www.linkedin.com/in/luis-felipe-nunes-de-carvalho-02055b207/">
+                            <FaLinkedin size="1.5rem"/>
+                        </a>
+                        <a href="https://github.com/Luis-Felipe-N">
+                            <FaGithubAlt size="1.5rem"/>
+                        </a>
                     </li>
                 </ul>
             </div>

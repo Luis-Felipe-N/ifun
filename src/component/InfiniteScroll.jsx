@@ -1,9 +1,9 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 // import {  } from 'react/cjs/react.development'
 import { Card } from '../component/Card'
 
 export default function InfiniteScroll({memes}) {
-    const [ page, setPage ] = useState(1)
+    // const [ page, setPage ] = useState(1)
 
     const pageEndRef = useRef()
     console.log(memes.length)

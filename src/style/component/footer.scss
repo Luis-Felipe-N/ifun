@@ -4,4 +4,24 @@ footer {
     display: grid;
     place-items: center;
     background-color: var(--primary);
+
+    ul {
+        list-style: none;
+        margin-top: 1rem;
+    }
+    
+    a {
+        color: var(--color-200);
+        font-size: 1rem;
+
+        & + a {
+            margin-left: 1rem;
+        }
+
+        transition: .2s;
+
+        &:hover {
+            filter: brightness(.8);
+        }
+    }
 }
