@@ -14,7 +14,7 @@ import { useAuth } from '../hooks/useAuth'
 export function Header( props ) {
     const history = useHistory()
     const { clickOutSide } = useClickOutSide()
-    const { user, setUser } = useAuth()
+    const { user, setUser, singOut } = useAuth()
     const [ memeOpen, setMemuOpen ] = useState(false)
 
 
@@ -32,8 +32,8 @@ export function Header( props ) {
     }
 
     const handleLogOut = () => {
+        singOut()
         setUser('')
-        
         history.push('/')
     }
 

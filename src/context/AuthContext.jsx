@@ -113,9 +113,12 @@ export function AuthContextProvider(props) {
         }
     }
 
+    async function singOut () {
+        await auth.signOut()
+    }
 
     return (
-        <AuthContext.Provider value={{user, setUser, singIn, singInWithEmailPassword, createAccountWithEmailPassWord }}>
+        <AuthContext.Provider value={{user, setUser, singIn, singInWithEmailPassword, createAccountWithEmailPassWord, singOut }}>
             {props.children}
         </AuthContext.Provider>
     )
