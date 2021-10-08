@@ -1,4 +1,4 @@
-export const downloaderImage = async (imageSrc) => {
+export const downloaderImage = async (imageSrc: string) => {
     const image = await fetch(imageSrc)
     const imageBlog = await image.blob()
     const imageURL = URL.createObjectURL(imageBlog)

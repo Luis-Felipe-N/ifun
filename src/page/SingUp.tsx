@@ -8,21 +8,31 @@ import logoImg from '../assets/image/logo.svg'
 import loginImg from '../assets/image/login.svg'
 
 import '../style/page/sing.scss'
-import { useState } from 'react'
+import { ReactNode, useState } from 'react'
+
+
+
+type CreateAccountWithEmailPassWordType = {
+    email: string,
+    password: string,
+    username: string
+
+}
+
 
 export function SingUp() {
-    const { createAccountWithEmailPassWord } = useAuth()
+    const { createAccountWithEmailPassWord }:any = useAuth()
     const history = useHistory()
-    const [ email, setEmail ] = useState()
-    const [ password, setPassword ] = useState()
-    const [ userName, setUserName ] = useState()
-    const [ erroPassword, setErroPassword ] = useState()
-    const [ erroEmail, setErroEmail ] = useState()
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const [ userName, setUserName ] = useState('')
+    const [ erroPassword, setErroPassword ] = useState('')
+    const [ erroEmail, setErroEmail ] = useState('')
 
-    const handleCreateAccont =  async (e) => {
+    const handleCreateAccont =  async (e: any) => {
         e.preventDefault()
 
-        const response = await createAccountWithEmailPassWord( email, password, userName )
+        const response = await createAccountWithEmailPassWord( {email, password, userName} )
         
         if ( response.sucess ) {
             console.log(response)
@@ -31,26 +41,26 @@ export function SingUp() {
             if ( response.code === 'auth/email-already-in-use' ) {
                 setErroEmail('Email em uso!')
             } else {
-                setErroEmail(false)
+                setErroEmail('')
             }
         }
     }
 
 
-    const validar = value => {
+    const validar = (value: string) => {
         if ( value.length < 6 ) {
             setErroPassword('Crie uma senha com mais de 6 digitos!')
         } else {
-            setErroPassword(false)
+            setErroPassword('')
         }
     }
 
 
-    const handleSetPassword = value => {
+    const handleSetPassword = (value: string) => {
         if ( erroPassword ) validar(value)
         setPassword(value)
     }
-    const handleSetEmail = value => {
+    const handleSetEmail = (value: string) => {
         if ( erroEmail ) validar(value)
         setEmail(value)
     }

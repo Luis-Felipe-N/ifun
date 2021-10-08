@@ -120,30 +120,30 @@ export function Card( props ) {
 
     useEffect(() => {
         if ( likesCount ) {
-            const l = likesCount.find( ({key, id}) => id === user.uid)
+            const l = likesCount.find( ({key, id}) => id === user?.uid)
             if (l) {
                 setLikeId(l.key)
             } else {
                 setLikeId(false)
             }
         }
-    }, [likesCount, user.uid])
+    }, [likesCount, user?.uid])
 
     const handleLikeMeme = async () => {
 
-        if ( !user.uid ) {
+        if (user) {    
+            const likeId = likesCount.find( ({key, id}) => id === user?.uid)
+    
+            if ( likeId ) {
+                await db.ref(`memes/${meme.id}/likes/${likeId.key}`).remove()
+            } else {
+                await db.ref(`memes/${meme.id}/likes/`).push({
+                    id: user?.uid
+                })
+            }
+        } else {
             toast.warn("Somente usuário logado!")
             return
-        }
-
-        const likeId = likesCount.find( ({key, id}) => id === user.uid)
-
-        if ( likeId ) {
-            await db.ref(`memes/${meme.id}/likes/${likeId.key}`).remove()
-        } else {
-            await db.ref(`memes/${meme.id}/likes/`).push({
-                id: user.uid
-            })
         }
     }
 
@@ -157,7 +157,6 @@ export function Card( props ) {
     }
     
     const handleDeleteComment = async (keyComment) => {
-        console.log(keyComment)
         try {
             await db.ref(`memes/${meme.id}/comments/${keyComment}`).remove()
             
@@ -196,7 +195,7 @@ export function Card( props ) {
                 <button className="meme__header_btnopenmodal" onClick={handleViewHeaderModal}><BiDotsVerticalRounded /></button>
                 <div ref={cardHeaderModalRef} className={`meme__header_modal ${cardHeaderModalIsOpen && 'active'}`}>
                     <button onClick={() => handleDownloadMeme(meme.url)} >Baixar meme</button>
-                    {  user.uid === meme.author.uid && <button onClick={() => handleDeleteMeme(meme.id)} className="meme__header_modal-btndelete">Deletar</button>}
+                    {  user?.uid === meme.author.uid && <button onClick={() => handleDeleteMeme(meme.id)} className="meme__header_modal-btndelete">Deletar</button>}
                 </div>
             </div>
             <img className="meme__img" src={meme.url} alt="Meme"/>
@@ -211,7 +210,7 @@ export function Card( props ) {
                             </button>
                         }
                         <button 
-                            disabled={!user.uid} 
+                            disabled={!user?.uid} 
                             onClick={ handleLikeMeme } 
                             className={`btn-like ${ likeId ? 'isLiked' : ''}`} 
                         >
@@ -220,7 +219,7 @@ export function Card( props ) {
                         </button>
 
                 </section>
-                { user.uid && (
+                { user?.uid && (
                      <form 
                         className="meme__input" 
                         onSubmit={ (e) => {handleSendCommet(meme.id, e)}}
@@ -246,7 +245,7 @@ export function Card( props ) {
                                     <img src={ comment.author.avatar || avatarImg } alt="imagem do avatar"/>
                                     <span> {formatName(comment.author.name)} </span>
                                 </article>
-                                { user.uid === comment.author.uid && <button onClick={() => handleDeleteComment(comment.key)}>
+                                { user?.uid === comment.author.uid && <button onClick={() => handleDeleteComment(comment.key)}>
                                     <TiDeleteOutline color="#e4717a" />
                                 </button>}
                             </div>

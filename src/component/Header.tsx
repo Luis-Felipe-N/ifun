@@ -11,10 +11,10 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 
 
-export function Header( props ) {
+export function Header( ) {
     const history = useHistory()
     const { clickOutSide } = useClickOutSide()
-    const { user, setUser, singOut } = useAuth()
+    const { user, setUser, singOut }:any = useAuth()
     const [ memeOpen, setMemuOpen ] = useState(false)
 
 
@@ -47,7 +47,7 @@ export function Header( props ) {
             <nav data-memu className={`${memeOpen && 'show'}`}>
                 <div className="nav-btns">
                     
-                    { user.uid ? (
+                    { user?.uid ? (
                         isPerfil ? <Button onClick={ handleLogOut }>Sair</Button> : <User user={user} />
                     ) : <Button  onClick={ handleLogin }>Login</Button> }
                     
