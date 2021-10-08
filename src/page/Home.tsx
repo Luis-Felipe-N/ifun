@@ -22,7 +22,7 @@ interface MemeProps {
 
 export function Home() {
     const { memes }:any = useMeme()
-    const [ currentMemes, setCurrentMemes ] = useState([])
+    const [ currentMemes, setCurrentMemes ] = useState<MemeProps[]>()
     const categories = [ 'filmes', 'animes', 'series', 'games', 'politica', 'esportes', 'estudos', 'tecnologias', 'all']
     
     useEffect(() => {

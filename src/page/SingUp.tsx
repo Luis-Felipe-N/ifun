@@ -8,16 +8,7 @@ import logoImg from '../assets/image/logo.svg'
 import loginImg from '../assets/image/login.svg'
 
 import '../style/page/sing.scss'
-import { ReactNode, useState } from 'react'
-
-
-
-type CreateAccountWithEmailPassWordType = {
-    email: string,
-    password: string,
-    username: string
-
-}
+import { useState } from 'react'
 
 
 export function SingUp() {
