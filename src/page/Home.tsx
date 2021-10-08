@@ -3,15 +3,26 @@ import { useEffect, useState } from 'react'
 import { useMeme } from '../hooks/useMeme'
 
 import { Header } from '../component/Header'
+import InfiniteScroll from '../component/InfiniteScroll'
 
 import '../style/page/home.scss'
-// import infiniteScroll from '../component/InfiniteScroll'
-import InfiniteScroll from '../component/InfiniteScroll'
+
+
+// interface User {
+
+// }
+
+interface MemeProps {
+    id: string,
+    url: string,
+    author: any,
+    hashtags: string[]
+}
 
 
 export function Home() {
-    const {memes} = useMeme()
-    const [ currentMemes, setCurrentMemes ] = useState()
+    const { memes }:any = useMeme()
+    const [ currentMemes, setCurrentMemes ] = useState([])
     const categories = [ 'filmes', 'animes', 'series', 'games', 'politica', 'esportes', 'estudos', 'tecnologias', 'all']
     
     useEffect(() => {
@@ -19,12 +30,12 @@ export function Home() {
     }, [memes])
 
 
-    const handleViewMeme = ({ target }) => {
+    const handleViewMeme = ({ target }: any) => {
         const categorieValue = target.getAttribute('value')
         if ( categorieValue === 'all' ) {
             setCurrentMemes(memes)
         } else {
-            const memeByCategories = memes.filter( meme => meme.hashtags.includes( categorieValue ))
+            const memeByCategories = memes.filter( (meme: any) => meme.hashtags.includes( categorieValue ))
             setCurrentMemes(memeByCategories)
         }
     }
