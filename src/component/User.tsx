@@ -2,18 +2,15 @@ import { useHistory } from "react-router-dom"
 
 import '../style/component/user.scss'
 
+// interface UserProps {
+//     user: {
+//         uid: string,
+//         name: string,
+//         avatar: string
+//     }
+// }
 
-type User = {
-    uid: string,
-    name: string,
-    avatar: string
-}
-
-interface UserProps {
-    user: User
-}
-
-export function User({user}: UserProps ) {
+export function User({user}: any ) {
     const history = useHistory()
 
     const handleEnterUser = () => {
