@@ -2,6 +2,7 @@
 @import '../utils/variables.scss';
 
 .filtro-meme {
+    min-width: 300px;
     cursor: pointer;
     box-shadow: 0 0 20px rgba($color: #ffffff, $alpha: .1);
     border: 1px solid rgba($color: #ffffff, $alpha: .2);

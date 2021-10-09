@@ -9,6 +9,7 @@ import { Perfil } from './page/Pefil';
 import { AuthContextProvider } from './context/AuthContext'
 import { MemeConetextProvider } from './context/MemeContext';
 import Footer from './component/Footer';
+import Categories from './page/Categories';
 
 function App() {
     return (
@@ -19,8 +20,9 @@ function App() {
                         <Route path="/" exact component={ Home } />
                         <Route path="/login" component={ Login } />
                         <Route path="/singup" exact component={ SingUp } />
-                        <Route path="/create/meme" component={ CreateMeme } />
+                        <Route path="/create" component={ CreateMeme } />
                         <Route path="/user/:id" component={ Perfil }/>
+                        <Route path="/categories/:categorie" component={ Categories } />
                         <Footer />
                     </MemeConetextProvider>
                 </AuthContextProvider>

@@ -2,16 +2,27 @@ import { useHistory } from "react-router-dom"
 
 import '../style/component/user.scss'
 
-export function User({user}) {
+
+type User = {
+    uid: string,
+    name: string,
+    avatar: string
+}
+
+interface UserProps {
+    user: User
+}
+
+export function User({user}: UserProps ) {
     const history = useHistory()
 
     const handleEnterUser = () => {
         history.push('/user/' + user.uid)
     }
 
-    const formatName = name => {
+    const formatName = (name: string) => {
         if (name.length > 15) {
-            return name.split(' ').splice(0, 2).splice(' ').join(' ')
+            return name.split(' ').splice(0, 2).splice(0).join(' ')
         } 
         return name
     }

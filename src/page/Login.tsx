@@ -12,12 +12,12 @@ import '../style/page/sing.scss'
 import { useState } from 'react'
 
 export function Login() {
-    const { singIn, singInWithEmailPassword } = useAuth()
+    const { singIn, singInWithEmailPassword }:any = useAuth()
     const history = useHistory()
-    const [ email, setEmail ] = useState()
-    const [ password, setPassword ] = useState()
-    const [ erroPassword, setErroPassword ] = useState()
-    const [ erroEmail, setErroEmail ] = useState()
+    const [ email, setEmail ] = useState('')
+    const [ password, setPassword ] = useState('')
+    const [ erroPassword, setErroPassword ] = useState('')
+    const [ erroEmail, setErroEmail ] = useState('')
 
     async function handleLogin() {
         await singIn()
@@ -25,7 +25,7 @@ export function Login() {
     }
 
 
-    async function handleLoginEmailPassword(e) {
+    async function handleLoginEmailPassword(e: any) {
         e.preventDefault()
 
         const response = await singInWithEmailPassword(email, password)

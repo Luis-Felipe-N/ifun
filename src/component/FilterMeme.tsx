@@ -1,12 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 
 import { useClickOutSide } from '../hooks/useClickOutSide'
 
 import { FaAngleDown } from "react-icons/fa";
 import '../style/component/filter-meme.scss'
 
-export function FilterMeme( props ) {
-    const filter = useRef()
+interface FilterMemeProps {
+    nameMeme: string
+    children: ReactNode
+}
+
+export function FilterMeme( props: FilterMemeProps ) {
+    // const filter = useRef()
     const [ openFilter, setOpenFilter ] = useState(false)
     const { clickOutSide } = useClickOutSide()
     
@@ -25,7 +30,7 @@ export function FilterMeme( props ) {
                 <span>{props.nameMeme || 'Selecione uma imagem'}</span>
                 <FaAngleDown />
             </div>
-            <div ref={filter} data-filter className={`container__meme-name ${openFilter && 'show'}`}>
+            <div  data-filter className={`container__meme-name ${openFilter && 'show'}`}>
                 <ul className="memes-names" data-drop aria-label="Nome dos memes">
                     {props.children}
                 </ul>

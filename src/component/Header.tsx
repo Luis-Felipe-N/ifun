@@ -51,7 +51,7 @@ export function Header( ) {
                         isPerfil ? <Button onClick={ handleLogOut }>Sair</Button> : <User user={user} />
                     ) : <Button  onClick={ handleLogin }>Login</Button> }
                     
-                    <Button onClick={() => {history.push('/create/meme')}}> Criar Meme </Button>
+                    <Button onClick={() => {history.push('/create')}}> Criar Meme </Button>
                 </div>
             </nav>
 
