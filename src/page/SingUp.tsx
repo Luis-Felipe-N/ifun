@@ -23,7 +23,8 @@ export function SingUp() {
     const handleCreateAccont =  async (e: any) => {
         e.preventDefault()
 
-        const response = await createAccountWithEmailPassWord( {email, password, userName} )
+
+        const response = await createAccountWithEmailPassWord( {email, password, username: userName} )
         
         if ( response.sucess ) {
             console.log(response)

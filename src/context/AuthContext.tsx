@@ -106,8 +106,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         }
     }
 
-    async function createAccountWithEmailPassWord( {email, password, username}: CreateAccountWithEmailPassWordType ){
-        
+    async function createAccountWithEmailPassWord( {email, password, username}: CreateAccountWithEmailPassWordType ){       
         try {
             const result = await auth.createUserWithEmailAndPassword( email, password )
 
@@ -117,15 +116,14 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
                 await db_firestore.collection('users').doc(uid).set({userName: username})
     
                 const userName = await db_firestore.collection('users').doc(uid).get()
-                const name = await userName.data()
 
-                console.log(name)
+                const name = await userName.data()
     
-                // setUser({
-                //     uid: uid,
-                //     name: userName.data().userName,
-                //     avatar: avatarImg
-                // })
+                setUser({
+                    uid: uid,
+                    name: name?.userName,
+                    avatar: avatarImg
+                })
             }
 
             return {
