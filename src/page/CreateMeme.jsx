@@ -111,7 +111,7 @@ export function CreateMeme() {
         let text = target.value.toLowerCase()
         text = text.split(' ')
         const newText = text.map( text => {
-            if ( !text.startsWith('#')) {
+            if ( !text.startsWith('#') && text.length >= 1) {
                 return `#${text}`
             } else {
                 return text
@@ -181,7 +181,8 @@ export function CreateMeme() {
                                 </div>
 
                                 <div className="container__preview-send">
-                                    <input  placeholder="#filmes #animes #series"  type="text" onChange={ handleSendHashtag } value={hashtag} placeholder="Adicione uma #hashtag"/>
+                                    Adicione uma Hashtag
+                                    <input  placeholder="#filmes #animes #series"  type="text" onChange={ handleSendHashtag } value={hashtag} />
                                     <Button onClick={ handleSubmitMeme }>Publicar</Button>
                                 </div>
                            </div>
