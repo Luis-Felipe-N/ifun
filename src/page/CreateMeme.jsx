@@ -191,7 +191,7 @@ export function CreateMeme() {
                             {captions && captions.map( ( any, index ) => {
                                 return (<div key={`container__input${index}`}>
                                     <label itemID={`input${index}`}>{'Texto ' + Number(index + 1)}</label>
-                                    <inputtype="text" key={index} onChange={ (event) => handleSetCaption(event , index) } />
+                                    <input type="text" key={index} onChange={ (event) => handleSetCaption(event , index) } />
                                     {formInvalid && <span className="menssage-error-input">Preencha correntamente os campos!</span>}
                                 </div>)
                             })}
