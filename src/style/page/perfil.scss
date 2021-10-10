@@ -29,13 +29,12 @@
     }
 
     &__memes {
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 3rem;
-        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         margin-bottom: 32px;
+        gap: 2rem;
 
 
         .meme {
