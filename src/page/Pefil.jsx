@@ -12,7 +12,7 @@ export function Perfil() {
     const { memes }= useMeme()
     const { user }= useAuth()
     const params = useParams()
-    const {id} = params?.id
+    const { userId} = params?.id
     const [ memesUser, setMemesUser ] = useState()
 
     useEffect(() => {
