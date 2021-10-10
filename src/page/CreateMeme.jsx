@@ -123,7 +123,7 @@ export function CreateMeme() {
 
     const handleSubmitMeme = async () => {
         if ( !user ) {
-            console.log('Para publicar um meme o usuário precisa estar logado!')
+            toast.warn('Para publicar um meme o usuário precisa estar logado!')
             return
         }
 
@@ -191,7 +191,7 @@ export function CreateMeme() {
                             {captions && captions.map( ( any, index ) => {
                                 return (<div key={`container__input${index}`}>
                                     <label itemID={`input${index}`}>{'Texto ' + Number(index + 1)}</label>
-                                    <input type="text" key={index} onChange={ (event) => handleSetCaption(event , index) } />
+                                    <input placeholder="#filmes #animes #series" type="text" key={index} onChange={ (event) => handleSetCaption(event , index) } />
                                     {formInvalid && <span className="menssage-error-input">Preencha correntamente os campos!</span>}
                                 </div>)
                             })}

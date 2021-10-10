@@ -7,13 +7,12 @@ import { useMeme } from "../hooks/useMeme"
 
 import '../style/page/perfil.scss'
 
-
 export function Perfil() {
     
-    const {memes} = useMeme()
-    const { user } = useAuth()
+    const { memes }= useMeme()
+    const { user }= useAuth()
     const params = useParams()
-    const userId = params.id
+    const {id} = params?.id
     const [ memesUser, setMemesUser ] = useState()
 
     useEffect(() => {
