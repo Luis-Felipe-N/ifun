@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useMeme } from '../hooks/useMeme'
 
 import { Header } from '../component/Header'
-import InfiniteScroll from '../component/InfiniteScroll'
+import {InfiniteScroll} from '../component/InfiniteScroll'
 
 import '../style/page/home.scss'
 

@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react'
-// import {  } from 'react/cjs/react.development'
+import { memo } from 'react'
 import { Card } from '../component/Card'
 
-export default function InfiniteScroll({memes}) {
+function InfiniteScrollComponent({memes}) {
     // const [ page, setPage ] = useState(1)
 
     const pageEndRef = useRef()
@@ -19,3 +19,5 @@ export default function InfiniteScroll({memes}) {
         </>   
     )
 }
+
+export const InfiniteScroll = memo(InfiniteScrollComponent)

@@ -19,7 +19,8 @@
 }
 
 .meme {
-    max-width: 500px;
+    max-width: 40rem;
+    // width: 100% !important  ;    
     border-radius: 8px;
     overflow: hidden;
     box-shadow: $box-shadow;
