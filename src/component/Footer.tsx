@@ -8,10 +8,10 @@ export default function Footer() {
             <div className="links">
                 <ul>
                     <li>
-                        <a target="_blank" href="https://www.linkedin.com/in/luis-felipe-nunes-de-carvalho-02055b207/">
+                        <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/luis-felipe-nunes-de-carvalho-02055b207/">
                             <FaLinkedin size="1.5rem"/>
                         </a>
-                        <a target="_blank" href="https://github.com/Luis-Felipe-N">
+                        <a target="_blank" rel="noreferrer" href="https://github.com/Luis-Felipe-N">
                             <FaGithubAlt size="1.5rem"/>
                         </a>
                     </li>
