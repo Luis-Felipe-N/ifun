@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Header } from "../component/Header"
-import { Card } from "../component/Card"
 import { useAuth } from "../hooks/useAuth"
 import { useMeme } from "../hooks/useMeme"
 
@@ -18,12 +17,9 @@ export function Perfil() {
 
     useEffect(() => {
         if ( memes ) {
-            console.log(userId)
             const parsedMeme = memes.filter( meme => meme.author.uid === userId)
-            // console.log(parsedMeme)
             setMemesUser(parsedMeme)
         }
-        console.log(memesUser, memes)
     }, [memes, userId])
 
     return (
