@@ -181,7 +181,7 @@ export function CreateMeme() {
                                 </div>
 
                                 <div className="container__preview-send">
-                                    <input type="text" onChange={ handleSendHashtag } value={hashtag} placeholder="Adicione uma #hashtag"/>
+                                    <input  placeholder="#filmes #animes #series"  type="text" onChange={ handleSendHashtag } value={hashtag} placeholder="Adicione uma #hashtag"/>
                                     <Button onClick={ handleSubmitMeme }>Publicar</Button>
                                 </div>
                            </div>
@@ -191,7 +191,7 @@ export function CreateMeme() {
                             {captions && captions.map( ( any, index ) => {
                                 return (<div key={`container__input${index}`}>
                                     <label itemID={`input${index}`}>{'Texto ' + Number(index + 1)}</label>
-                                    <input placeholder="#filmes #animes #series" type="text" key={index} onChange={ (event) => handleSetCaption(event , index) } />
+                                    <inputtype="text" key={index} onChange={ (event) => handleSetCaption(event , index) } />
                                     {formInvalid && <span className="menssage-error-input">Preencha correntamente os campos!</span>}
                                 </div>)
                             })}
