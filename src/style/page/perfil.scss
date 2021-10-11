@@ -17,6 +17,8 @@
 
         &-img {
             width: 100px;
+            height: 100px;
+            object-fit: cover;
             border-radius: 100%;
         }
 
@@ -29,16 +31,29 @@
     }
 
     &__memes {
-        max-width: 900px;
+        max-width: 1200px;
+        padding: 0 5%;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        place-items: center;
         margin-bottom: 32px;
-        gap: 2rem;
+        gap: 2rem;        
+    }
+}
 
+@media (max-width: 1090px) {
+    .perfil {
+        &__memes {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
 
-        .meme {
-            max-width: 350px !important;
+@media (max-width: 680px) {
+    .perfil {
+        &__memes {
+            grid-template-columns: repeat(1, 1fr);
         }
     }
 }

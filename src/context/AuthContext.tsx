@@ -42,13 +42,13 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
                             avatar: photoURL,
                         })
                     } else {
-                        const userName = await db_firestore.collection('users').doc(uid).get()
-                        const name = await userName.data()
-    
+                        const userData = (await db_firestore.collection('users').doc(uid).get()).data()
+                        const userAvatar = await userData?.photoURL
+            
                         setUser({
                             uid: uid,
-                            name: name?.userName,
-                            avatar: avatarImg
+                            name: userData?.userName,
+                            avatar: userAvatar || avatarImg
                         })
                     }
                 }
@@ -69,6 +69,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
             if ( result.user ) {
                 const { displayName, photoURL, uid} = result.user
+                await db_firestore.collection('users').doc(uid).set({userName: displayName, photoURL})
                 setUser({
                     uid: uid,
                     name: displayName,
@@ -88,13 +89,13 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             if ( result.user ) {
                 const { uid } = result.user
 
-                const userName = await db_firestore.collection('users').doc(uid).get()
-                const name = await userName.data()
+                const userData = (await db_firestore.collection('users').doc(uid).get()).data()
+                const userAvatar = await userData?.photoURL
     
                 setUser({
                     uid: uid,
-                    name: name?.userName,
-                    avatar: avatarImg
+                    name: userData?.userName,
+                    avatar: userAvatar || avatarImg
                 })
             }
 
@@ -113,7 +114,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             if (result.user) {
                 const { uid } = result.user 
     
-                await db_firestore.collection('users').doc(uid).set({userName: username})
+                await db_firestore.collection('users').doc(uid).set({userName: username, photoURL: avatarImg})
     
                 const userName = await db_firestore.collection('users').doc(uid).get()
 

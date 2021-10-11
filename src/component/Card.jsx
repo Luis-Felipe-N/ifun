@@ -8,7 +8,7 @@ import { useClickOutSide } from "../hooks/useClickOutSide";
 import { db } from "../services/firebase";
 
 import { downloaderImage } from '../utils/saveImage'
-import { getLikes } from "../utils/firebase";
+import { getLikes, getComments } from "../utils/firebase";
 
 import '../style/component/card.scss'
 
@@ -71,30 +71,8 @@ export function Card( props ) {
 
 
     useEffect(() => {
-        async function getComments() {
-            const memeRef = db.ref(`memes/${meme.id}/comments/`)
-
-            memeRef.on('value', (value, key) => {
-                const parsedComment = Object.entries(value.val() || {})
-                .map( ([key, {content, author}]) => {
-                    return {
-                        key,
-                        content,
-                        author
-                    }
-                })
-                setComments( parsedComment )
-                return () => {
-
-                }
-            })
-
-            return () => {
-                memeRef.off('value')
-            }
-        }
-
-        getComments()
+        
+        getComments(meme.id, setComments)
 
         
         getLikes(meme.id, setLikes)
@@ -167,7 +145,6 @@ export function Card( props ) {
     }
 
     const handleDownloadMeme = (imageSrc) => {
-        console.log(imageSrc)
         downloaderImage(imageSrc)
     }
 
