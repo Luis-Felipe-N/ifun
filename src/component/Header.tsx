@@ -7,6 +7,7 @@ import { Button } from './Button'
 
 import { AiOutlineUser } from 'react-icons/ai'
 import { BsBoxArrowRight }  from 'react-icons/bs'
+import { IoIosArrowDown } from 'react-icons/io'
 
 import '../style/component/header.scss'
 import '../style/component/user.scss'
@@ -66,6 +67,7 @@ export function Header( ) {
                        <button onClick={ handleOpenModalMenu } className="user">
                             <img src={user.avatar} alt={`Imagem perfil Usuario ${user.name}`}/>
                             <span>{formatName(user.name)}</span>
+                            <IoIosArrowDown />
                        </button>
                        <div ref={modalMenu} className={openModalMenu ? 'modal__perfil active' : 'modal__perfil'}>
                            <Link to={'/user/' + user.uid}>
