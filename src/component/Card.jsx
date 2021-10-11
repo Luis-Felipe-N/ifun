@@ -8,6 +8,7 @@ import { useClickOutSide } from "../hooks/useClickOutSide";
 import { db } from "../services/firebase";
 
 import { downloaderImage } from '../utils/saveImage'
+import { getLikes } from "../utils/firebase";
 
 import '../style/component/card.scss'
 
@@ -32,13 +33,10 @@ export function Card( props ) {
 
     const [ newComment, setNewComment ] = useState()
     const [ comments, setComments ] = useState([])
-    const [ likesCount, setLikesCount ] = useState()
+    const [ likes, setLikes ] = useState()
     const [ likeId, setLikeId ] = useState(false)
     const [ openModalComments, setOpenModalComments ] = useState(false)
     const [ cardHeaderModalIsOpen, setCardHeaderModalIsOpen ] = useState(false)
-
-    // const { downloaderImage } = saveImage
-
 
     useEffect(() => {
         if (cardHeaderModalIsOpen) {
@@ -98,44 +96,26 @@ export function Card( props ) {
 
         getComments()
 
-        async function getLikes() {
-            const memeRef = db.ref(`memes/${meme.id}/likes/`)
-
-            memeRef.on('value', (value, key) => {
-                const paserdLikesCount = Object.entries(value.val() || {})
-                .map( ([key, {id}]) => {
-                    return {
-                        id, key
-                    }
-                })
-                setLikesCount( paserdLikesCount )
-                
-            })
-            
-            return () => {
-                memeRef.off('value')
-            }
-        }
-
-        getLikes()
+        
+        getLikes(meme.id, setLikes)
     },[meme.id])
 
 
     useEffect(() => {
-        if ( likesCount ) {
-            const l = likesCount.find( ({key, id}) => id === user?.uid)
+        if ( likes ) {
+            const l = likes.find( ({key, id}) => id === user?.uid)
             if (l) {
                 setLikeId(l.key)
             } else {
                 setLikeId(false)
             }
         }
-    }, [likesCount, user?.uid])
+    }, [likes, user?.uid])
 
     const handleLikeMeme = async () => {
 
         if (user) {    
-            const likeId = likesCount.find( ({key, id}) => id === user?.uid)
+            const likeId = likes.find( ({key, id}) => id === user?.uid)
     
             if ( likeId ) {
                 await db.ref(`memes/${meme.id}/likes/${likeId.key}`).remove()
@@ -217,7 +197,7 @@ export function Card( props ) {
                             onClick={ handleLikeMeme } 
                             className={`btn-like ${ likeId ? 'isLiked' : ''}`} 
                         >
-                            { likesCount && <span>{likesCount.length}</span>}
+                            { likes && <span>{likes.length}</span>}
                             <FiThumbsUp />
                         </button>
 
