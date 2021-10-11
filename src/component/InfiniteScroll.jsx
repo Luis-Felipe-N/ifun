@@ -16,7 +16,7 @@ function InfiniteScrollComponent({memes}) {
     return (
         <>
         {memes.map( meme => <article key={meme.id}><Card meme={meme} /></article>)}
-        <span ref={pageEndRef}>Acobou os memes :( <Link to="create"><a>Que tal criar o seu?</a></Link></span>
+        <span ref={pageEndRef}>Acobou os memes :( <Link to="create">Que tal criar o seu?</Link></span>
         </>   
     )
 }

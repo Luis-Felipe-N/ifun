@@ -35,7 +35,7 @@ export function Header( ) {
         if ( openModalMenu ) {
             clickOutSide( modalMenu.current, openModalMenu, setOpenModalMenu)
         }
-    },[openModalMenu])
+    },[openModalMenu, clickOutSide])
 
     const handleOpenModalMenu = () => {
         setOpenModalMenu(!openModalMenu)
@@ -69,7 +69,7 @@ export function Header( ) {
                        </button>
                        <div ref={modalMenu} className={openModalMenu ? 'modal__perfil active' : 'modal__perfil'}>
                            <Link to={'/user/' + user.uid}>
-                            <a><AiOutlineUser/>Perfil</a>
+                            <AiOutlineUser/>Perfil
                            </Link>
                             <button onClick={ handleLogOut }>
                                 <BsBoxArrowRight />
