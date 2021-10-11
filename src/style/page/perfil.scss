@@ -15,12 +15,19 @@
         border-bottom: 1px solid var(--secondary-300);
         padding-bottom: 1rem;
 
-        &-img {
+        .container__img-perfil {
             width: 100px;
             height: 100px;
-            object-fit: cover;
             border-radius: 100%;
+            overflow: hidden;
+
+            > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
         }
+
 
         &-conquest {
             display: flex;

@@ -6,19 +6,20 @@ import { useMeme } from "../hooks/useMeme"
 import '../style/page/perfil.scss'
 import { CardPerfil } from "../component/CardPerfil"
 import { getUser } from "../utils/firebase"
+import { Image } from "../component/Image"
 
 
 export function Perfil() {
     const { memes }= useMeme()
     const params = useParams()
     const userId = params.id
-    const [ memesUser, setMemesUser ] = useState()
+    const [ memesByUser, setMemesByUser ] = useState()
     const [ user, setUser ] = useState({})
 
     useEffect(() => {
         if ( memes ) {
             const parsedMeme = memes.filter( meme => meme.author.uid === userId)
-            setMemesUser(parsedMeme)
+            setMemesByUser(parsedMeme)
         }
     }, [memes, userId])
 
@@ -37,19 +38,19 @@ export function Perfil() {
                 {user && (
                     <>
                         <div className="container__img-perfil">
-                            <img className="perfil__info-img" alt="Imagem de perfil do usuário" src={user?.photoURL} />
+                            <Image src={user?.photoURL} />
                         </div>
                         <h2>{ user?.userName } </h2>
                     </>
                 )}
                 <div className="perfil__info-conquest">
-                    <h2>Memes: {memesUser && memesUser.length }</h2>
+                    <h2>Memes: {memesByUser && memesByUser.length }</h2>
                 </div>
             </section>
             <main className="perfil__memes">
 
-                {memesUser &&
-                    memesUser.map( meme => (<CardPerfil key={meme.key} meme={meme} />))
+                {memesByUser &&
+                    memesByUser.map( meme => (<CardPerfil key={meme.key} meme={meme} />))
                 }
             </main>
         </div>

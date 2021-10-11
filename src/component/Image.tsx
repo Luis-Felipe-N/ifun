@@ -1,20 +1,19 @@
 import '../style/component/image.scss'
 
 interface ImageProps {
-    image: string
+    src: string
 }
 
 
 export function Image(props: ImageProps) {
-    const { image } = props
-    if (image) {
+    const { src } = props
+    if (src) {
         return (
-            <img alt="meme" src={props?.image} />
+            <img alt="meme" {...props} />
         )
     } else {
         return (
             <div className="skeleton">
-            skeleton
             </div>
         )
     }

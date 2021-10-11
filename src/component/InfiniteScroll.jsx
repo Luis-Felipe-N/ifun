@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import { memo } from 'react'
+import { Link } from 'react-router-dom'
 import { Card } from '../component/Card'
 
 function InfiniteScrollComponent({memes}) {
@@ -15,7 +16,7 @@ function InfiniteScrollComponent({memes}) {
     return (
         <>
         {memes.map( meme => <article key={meme.id}><Card meme={meme} /></article>)}
-        <span ref={pageEndRef}>Fim</span>
+        <span ref={pageEndRef}>Acobou os memes :( <Link to="create"><a>Que tal criar o seu?</a></Link></span>
         </>   
     )
 }

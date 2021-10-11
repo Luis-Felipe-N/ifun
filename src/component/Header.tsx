@@ -1,13 +1,17 @@
 import { Link, useHistory } from 'react-router-dom'
 
 import { useClickOutSide } from '../hooks/useClickOutSide'
+import { formatName } from '../utils/formatName'
 
-import { User } from './User'
 import { Button } from './Button'
 
+import { AiOutlineUser } from 'react-icons/ai'
+import { BsBoxArrowRight }  from 'react-icons/bs'
+
 import '../style/component/header.scss'
+import '../style/component/user.scss'
 import logoImg from '../assets/image/logo.svg'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 
 
@@ -16,7 +20,9 @@ export function Header( ) {
     const { clickOutSide } = useClickOutSide()
     const { user, setUser, singOut }:any = useAuth()
     const [ memeOpen, setMemuOpen ] = useState(false)
+    const [ openModalMenu, setOpenModalMenu ] = useState(false)
 
+    const modalMenu = useRef<HTMLHeadingElement>(null)
 
     useEffect(() => {
         if ( memeOpen ) {
@@ -25,7 +31,15 @@ export function Header( ) {
         }
     }, [memeOpen, clickOutSide])
 
-    const isPerfil = history.location.pathname.startsWith('/user')
+    useEffect(() => {
+        if ( openModalMenu ) {
+            clickOutSide( modalMenu.current, openModalMenu, setOpenModalMenu)
+        }
+    },[openModalMenu])
+
+    const handleOpenModalMenu = () => {
+        setOpenModalMenu(!openModalMenu)
+    }
 
     const handleLogin = () => {
         history.push('/login')
@@ -48,7 +62,22 @@ export function Header( ) {
                 <div className="nav-btns">
                     
                     { user?.uid ? (
-                        isPerfil ? <Button onClick={ handleLogOut }>Sair</Button> : <User user={user} />
+                        <>
+                       <button onClick={ handleOpenModalMenu } className="user">
+                            <img src={user.avatar} alt={`Imagem perfil Usuario ${user.name}`}/>
+                            <span>{formatName(user.name)}</span>
+                       </button>
+                       <div ref={modalMenu} className={openModalMenu ? 'modal__perfil active' : 'modal__perfil'}>
+                           <Link to={'/user/' + user.uid}>
+                            <a><AiOutlineUser/>Perfil</a>
+                           </Link>
+                            <button onClick={ handleLogOut }>
+                                <BsBoxArrowRight />
+                                Sair
+                            </button>
+
+                       </div>
+                       </>
                     ) : <Button  onClick={ handleLogin }>Login</Button> }
                     
                     <Button onClick={() => {history.push('/create')}}> Criar Meme </Button>

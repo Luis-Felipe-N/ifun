@@ -1,14 +1,8 @@
 import { useHistory } from "react-router-dom"
 
-import '../style/component/user.scss'
+import { formatName } from "../utils/formatName"
 
-// interface UserProps {
-//     user: {
-//         uid: string,
-//         name: string,
-//         avatar: string
-//     }
-// }
+import '../style/component/user.scss'
 
 export function User({user}: any ) {
     const history = useHistory()
@@ -17,12 +11,6 @@ export function User({user}: any ) {
         history.push('/user/' + user.uid)
     }
 
-    const formatName = (name: string) => {
-        if (name.length > 15) {
-            return name.split(' ').splice(0, 2).splice(0).join(' ')
-        } 
-        return name
-    }
 
     if ( user ) {
         return (

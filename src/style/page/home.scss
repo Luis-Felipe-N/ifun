@@ -18,6 +18,12 @@
             justify-content: center;
             gap: 3rem;
             max-width: 32rem;
+
+            a {
+                color: var(--secondary);
+                font-weight: 500;
+                text-decoration: none;
+            }
         
             &_carregando {
                 flex: 1;

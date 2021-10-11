@@ -14,6 +14,7 @@ import { useState } from 'react'
 export function Login() {
     const { singIn, singInWithEmailPassword }:any = useAuth()
     const history = useHistory()
+    
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ erroPassword, setErroPassword ] = useState('')

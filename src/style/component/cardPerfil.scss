@@ -4,6 +4,9 @@
     background-position: center;
     background-size: cover;
     cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 10 rgba($color: #000000, $alpha: 0.6);
+    overflow: hidden;
 
     &__data {
         width: 100%;

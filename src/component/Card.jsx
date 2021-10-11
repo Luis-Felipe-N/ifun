@@ -20,6 +20,7 @@ import { TiDeleteOutline } from 'react-icons/ti'
 import avatarImg from '../assets/image/avatar.svg'
 import { User } from "./User";
 import { Image } from "./Image";
+import { Link } from "react-router-dom";
 
 
 
@@ -159,7 +160,7 @@ export function Card( props ) {
                 </div>
             </div>
             {/* <img className="meme__img"  alt="Meme"/> */}
-            <Image image={meme.url} />
+            <Image src={meme.url} />
             <section className="meme__footer">
                 <section className="meme__btn">
                         { comments && 
@@ -203,7 +204,7 @@ export function Card( props ) {
                             <div className="comment__user">
                                 <article>
                                     <img src={ comment.author.avatar || avatarImg } alt="imagem do avatar"/>
-                                    <span> {formatName(comment.author.name)} </span>
+                                    <Link to={'/user/' + comment.author.uid}><span> {formatName(comment.author.name)} </span></Link>
                                 </article>
                                 { user?.uid === comment.author.uid && <button onClick={() => handleDeleteComment(comment.key)}>
                                     <TiDeleteOutline color="#e4717a" />
