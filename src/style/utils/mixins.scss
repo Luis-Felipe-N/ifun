@@ -46,3 +46,10 @@
         outline-width: var(--primary);
     }
 }
+
+@mixin hover {
+    transition: .2s;
+    &:hover {
+        filter: brightness(.8);
+    }
+}

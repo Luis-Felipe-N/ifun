@@ -100,15 +100,17 @@
                 background-color: white;
                 display: flex;
                 flex-direction: column;
-                width: 120px;
+                width: 150px;
                 animation: animaDown .2s;
                 
                 a {
+                    font-size: 1rem;
                     color: var(--color-200);
                     display: flex;
                     align-items: center;
-                    padding: .2rem .2rem;
+                    padding: .5rem 1rem;
                     gap: .2rem;
+                    @include hover;
                 }
 
                 button {
@@ -116,11 +118,12 @@
                     align-items: center;
                     gap: .2rem;
                     text-align: left;
-                    padding: .2rem .5rem;
+                    padding: .5rem 1rem;
                     border: 0;
                     background-color: transparent;
                     color: red;
                     cursor: pointer;
+                    @include hover;
                 }
             }
     
@@ -190,7 +193,10 @@
                     position: static;
                     background-color:var(--secondary);
                     width: 100%;
-
+                     a, button {
+                        font-size: 1.2rem;
+                     }
+                    
                     a {
                         color: #fff;
                     }
