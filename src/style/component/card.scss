@@ -94,7 +94,7 @@
     }
 
     .meme__footer {
-        padding: .7rem;
+        padding: .7rem .7rem 0;
     }
 
     &__btn {
@@ -144,7 +144,7 @@
     .container-comments {
         max-height: 10rem;
         overflow-y: auto;
-        margin: .7rem;
+        margin: .2rem .7rem;
 
         .btn-view-comment {
             @include btn-primary;

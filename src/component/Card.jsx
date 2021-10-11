@@ -18,6 +18,9 @@ import { TiDeleteOutline } from 'react-icons/ti'
 
 import avatarImg from '../assets/image/avatar.svg'
 import { User } from "./User";
+import { Image } from "./Image";
+
+
 
 export function Card( props ) {
     const { user } = useAuth()
@@ -198,7 +201,8 @@ export function Card( props ) {
                     {  user?.uid === meme.author.uid && <button onClick={() => handleDeleteMeme(meme.id)} className="meme__header_modal-btndelete">Deletar</button>}
                 </div>
             </div>
-            <img className="meme__img" src={meme.url} alt="Meme"/>
+            {/* <img className="meme__img"  alt="Meme"/> */}
+            <Image image={meme.url} />
             <section className="meme__footer">
                 <section className="meme__btn">
                         { comments && 
@@ -210,7 +214,6 @@ export function Card( props ) {
                             </button>
                         }
                         <button 
-                            disabled={!user?.uid} 
                             onClick={ handleLikeMeme } 
                             className={`btn-like ${ likeId ? 'isLiked' : ''}`} 
                         >
