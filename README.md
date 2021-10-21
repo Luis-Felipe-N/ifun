@@ -16,8 +16,8 @@
 Clone the project and access the folder.
 
 ```bash
-# $ git clone https://github.com/guilhermecapitao/letmeask.git
-# $ cd letmeask
+# $ git clone https://github.com//Luis-Felipe-N/ifun.git
+# $ cd ifun
 ```
 
 Follow the steps below:
