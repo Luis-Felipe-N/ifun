@@ -1,13 +1,13 @@
-import { createContext, useEffect, useState } from 'react'
+import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { auth, firebase, db_firestore } from '../services/firebase'
 
 import avatarImg from '../assets/image/avatar.svg'
 import { ReactNode } from 'react'
 
 
-type User = {
-    uid: string,
-    name: string | null,
+interface User {
+    uid: string;
+    name: string | null;
     avatar: string | null
 }
 
@@ -15,18 +15,24 @@ interface AuthContextProviderProps {
     children: ReactNode;
 }
 
-type CreateAccountWithEmailPassWordType = {
+interface ICreateAccountWithEmailPassword {
     email: string,
     password: string,
     username: string
-
+}
+interface IAuthContextProps {
+    user: User | undefined
+    setUser: Dispatch<SetStateAction<User | undefined>>;
+    singIn: ()=>void ;
+    singInWithEmailPassword: (email: string, password: string) => Promise<{ sucess: boolean, code?: string }>;
+    createAccountWithEmailPassWord: ({email, password, username}: ICreateAccountWithEmailPassword)=>void;
+    singOut: ()=>void
 }
 
-export const AuthContext = createContext({})
+export const AuthContext = createContext({} as IAuthContextProps)
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
     const [ user, setUser ] = useState<User>()
-
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged( (user) => {
@@ -56,9 +62,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             getUserInfo()
         })
 
-        return () => {
-            unsubscribe()
-        }
+        return () => unsubscribe()
     }, [])
 
     async function singIn() {
@@ -102,12 +106,16 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             return {
                 sucess: true
             }
-        } catch (error) {
-            return error
+        } catch (error: any) {
+            console.log(error)
+            return {
+                sucess: false,
+                code: error.code
+            }
         }
     }
 
-    async function createAccountWithEmailPassWord( {email, password, username}: CreateAccountWithEmailPassWordType ){       
+    async function createAccountWithEmailPassWord( {email, password, username}: ICreateAccountWithEmailPassword ){       
         try {
             const result = await auth.createUserWithEmailAndPassword( email, password )
 
@@ -118,7 +126,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     
                 const userName = await db_firestore.collection('users').doc(uid).get()
 
-                const name = await userName.data()
+                const name = userName.data()
     
                 setUser({
                     uid: uid,
@@ -130,18 +138,17 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
             return {
                 sucess: true
             }
-        } catch (error) {
-            return error
+        } catch (error: any) {
+            return {
+                sucess: false,
+                code: error.code
+            }
         }
     }
 
     async function singOut () {
         await auth.signOut()
     }
-
-    // async function getUser(uid) {
-
-    // }
 
     return (
         <AuthContext.Provider value={{user, setUser, singIn, singInWithEmailPassword, createAccountWithEmailPassWord, singOut }}>

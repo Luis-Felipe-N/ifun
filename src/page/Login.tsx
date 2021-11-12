@@ -12,7 +12,7 @@ import '../style/page/sing.scss'
 import { useState } from 'react'
 
 export function Login() {
-    const { singIn, singInWithEmailPassword }:any = useAuth()
+    const { singIn, singInWithEmailPassword } = useAuth()
     const history = useHistory()
     
     const [ email, setEmail ] = useState('')
@@ -34,7 +34,6 @@ export function Login() {
         if ( response.sucess ) {
             history.push('/')
         } else {
-            console.log(response)
             if ( response.code === 'auth/user-not-found' ) {
                 setErroEmail('Usuário não encontrado!')
                 setErroPassword('')

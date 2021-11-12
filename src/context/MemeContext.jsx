@@ -12,6 +12,7 @@ export function MemeConetextProvider( props ) {
         async function getMeme() {
             const memeRef = await db.ref('memes/')
 
+            // Usar child_added
             memeRef.on('value', snapshot => {
                 const memeParset = Object.entries(snapshot.val() || {}).map( ([key, { url, author, hashtags }]) => {
                     return {
