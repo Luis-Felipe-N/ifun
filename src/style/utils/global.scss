@@ -25,6 +25,17 @@
 
 
 :root {
+    --white: #ffffff;
+    --gray-100: #e1e1e6;
+    --gray-300: #c4c4cc;
+    --gray-400: #8d8d99;
+    --gray-600: #323238;
+    --gray-700: #29292e;
+    --gray-800: #202024;
+    --gray-900: #121214;
+
+    --yellow-400: #ECC94B;
+    --yellow-500: #D69E2E;
     --primary: #FAC463;
     --secondary: #805AD5;
     --secondary-300: #B794F4;
@@ -48,8 +59,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-    background-color: var(--background);
-    color: var(--color-200);
+    background-color: var(--gray-900);
+    color: var(--gray-100);
 }
 
 body, textarea, input, button {

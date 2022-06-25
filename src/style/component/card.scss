@@ -23,12 +23,12 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: $box-shadow;
-    border: 2px solid var(--primary);
-    background-color: var(--background);
+    background-color: var(--gray-700);
+    padding: 1rem;
 
     &__header{
         position: relative;
-        padding: .5rem 1rem;
+        padding-bottom: 1rem;
         @include center-al-c;
         justify-content: space-between;
         span {
@@ -90,6 +90,8 @@
 
     &__img {
         width: 100%;
+        border-radius: 8px;
+        overflow: hidden;
         object-fit: cover
     }
 
@@ -152,7 +154,7 @@
 
         .comment {
             margin-top: .5rem;
-            border-bottom: 1px solid var(--background-200);
+            border-bottom: 1px solid var(--gray-200);
 
             &__user {
                 display: flex;
